@@ -137,7 +137,7 @@ async function getWeather() {
         return;
     }
 
-    const apiKey = "156d9e29e84dfcd1f8472d9e8fee3031"; // Replace with your actual API key
+    const apiKey = "156d9e29e84dfcd1f8472d9e8fee3031"; 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     try {
@@ -159,99 +159,6 @@ async function getWeather() {
         document.getElementById("weather-info").innerHTML = `<p class="text-red-500">Error fetching data</p>`;
     }
 }
-
-
-
-
-
-
-
-// async function getWeather() {
-//     const city = document.getElementById('city').value;
-//     const apiKey = '156d9e29e84dfcd1f8472d9e8fee3031'; // Replace with your OpenWeatherMap API key
-//     const weatherInfo = document.getElementById('weather-info');
-//     const dashboardWeather = document.getElementById('weatherupdate');
-
-//     if (!city) {
-//         weatherInfo.innerHTML = '<p class="text-red-500">Please enter a city name.</p>';
-//         return;
-//     }
-
-//     try {
-//         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
-//         const data = await response.json();
-
-//         if (data.cod !== 200) {
-//             weatherInfo.innerHTML = `<p class="text-red-500">${data.message}</p>`;
-//             return;
-//         }
-
-//         const weatherHTML = `
-//             <h3 class="font-bold text-lg">${data.name}, ${data.sys.country}</h3>
-//             <p class="text-gray-700">Temperature: ${data.main.temp}°C</p>
-//             <p class="text-gray-700">Weather: ${data.weather[0].description}</p>
-//             <p class="text-gray-700">Humidity: ${data.main.humidity}%</p>
-//             <p class="text-gray-700">Wind Speed: ${data.wind.speed} m/s</p>
-//         `;
-
-//         // Display weather info in both sections
-//         weatherInfo.innerHTML = weatherHTML;
-//         dashboardWeather.innerHTML = `<h3 class="font-bold text-lg mb-2">Weather Update</h3>${weatherHTML}`;
-//     } catch (error) {
-//         weatherInfo.innerHTML = '<p class="text-red-500">Failed to fetch weather data.</p>';
-//     }
-// }
-
-
-
-
-
-
-
-
-    // Ensure the animation works dynamically
-    let slides = document.getElementById("slides");
-    let index = 0;
-    let totalSlides = document.querySelectorAll(".slide").length;
-
-    function slideShow() {
-        index++;
-        if (index >= totalSlides) { index = 0; }
-        slides.style.transform = "translateX(-" + (index * 100) + "%)";
-    }
-
-    setInterval(slideShow, 4000); // Change slides every 4 seconds
-
-
-
-
-
-
-
-    const menuBtn = document.getElementById("menu-btn");
-    const sidebar = document.getElementById("sidebar");
-    const closeBtn = document.getElementById("close-btn");
-
-    menuBtn.addEventListener("click", () => {
-        sidebar.classList.remove("translate-x-full");
-    });
-
-    closeBtn.addEventListener("click", () => {
-        sidebar.classList.add("translate-x-full");
-    });
-
-    document.addEventListener("click", (event) => {
-        if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
-            sidebar.classList.add("translate-x-full");
-        }
-    });
-
-
-
-
-
-
-
 
 
 
