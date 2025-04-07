@@ -33,7 +33,7 @@ include("connect.php");
        :)
       </p><br><br>
 
-      <a href="../main.html">Back to main Page</a>
+      <a href="../main.html">Back to main Page</a><br><br>
 
       <a href="logout.php">Logout</a>
     </div>
