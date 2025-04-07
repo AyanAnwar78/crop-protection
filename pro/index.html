@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Dropdown</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <nav class=" p-3 fixed  top-0 h-20 w-full z-50  bg-gray-200 shadow-2xl ">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-black text-xl font-bold mt-4">My Website</a>
+
+            <!-- Navbar Items -->
+            <ul class="flex space-x-11 mt-3">
+                <li class="relative group ">
+                    <a href="#" class="text-black hover:underline ">Home</a>
+                </li>
+
+                <li class="relative group">
+                    <a href="#" class="text-black hover:underline">About</a>
+
+                    <!-- Dropdown Menu -->
+                    <ul
+                        class="absolute left-0 mt-0 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-opacity duration-300 delay-200">
+                        <li><a href="./about/Company.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">Company</a></li>
+                        <li><a href="../pro/about/leader.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">Leadership</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">Animal Sighting</a></li>
+                    </ul>
+                </li>
+
+                <!-- <li class="relative group">
+                    <a href="#" class="text-black hover:underline">Products</a>
+
+                    
+                    <ul
+                        class="absolute left-0 mt-0 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-opacity duration-300 delay-200">
+                        <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">Web Design</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">SEO</a></li>
+                        <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">Marketing</a></li>
+                    </ul>
+                </li> -->
+
+                <li class="relative group">
+                    <a href="#" class="text-black hover:underline">Quick Link</a>
+
+                    <!-- First Dropdown -->
+                    <ul
+                        class="absolute left-0 mt-0 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-opacity duration-300 delay-200">
+                        <li class="relative group">
+                            <a href="../pro/quickLink/map.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">Map</a>
+                            <a href="../pro/quickLink/wether.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-200">Weather</a>
+                            
+                        </li>
+                    </ul>
+                </li>
+<!-- 
+                <li class="relative group">
+                    <a href="#" class="text-black hover:underline">Claim</a>
+                </li> -->
+
+                <li class="relative group">
+                    <a href="../contect/contectPage.html" class="text-black hover:underline">Contact</a>
+                </li>
+
+                <li class="relative group">
+                    <a href="#" class="text-black hover:underline">SignIn</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="bg-amber-50 h-screen">
+        <img class="h-[90%] w-screen" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-0.jpg" alt="">
+    </div>
+
+
+    <div class="bg-amber-50 h-auto ">
+        <div class="flex">
+            <div class="mt-28 m-32 w-1/2 inline">
+                <p class="font-bold text-4xl font-serif">Kshema is a fully digital insurance provider created to make
+                    India’s farmers
+                    financially more resilient and independent</p>
+            </div>
+            <div class=" w-96 inline h-96 mt-48">
+                <img src="../Images/img-1.jpg" alt="Not">
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <div class=" ml-28 w-96 pb-4">
+                <img class="h-max w-96" src="../Images/img-2.jpg" alt="Not">
+            </div>
+            <div class=" w-32 h-1/2 flex-1/2 items-center">
+                <p class="text-xl font-serif pl-7">Through hi-tech yet simple-to-use solutions, we are securing the
+                    future of
+                    India’s farmers against unpredictable climate events which are becoming
+                    more frequent and intense.</p>
+                <div class="border-2 mt-4 text-center font-bold w-36 h-9">
+                    <form>
+                        <button name="about" value="about" class="text-xl">About</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-amber-50 h-screen">div
+        <div class="flex  m-28">
+            <div class="inline ">
+                <img class="w-96 h-96" src="../Images/img-3.jpg" alt="Not">
+            </div>
+            <div class="inline ml-9 ">
+                <p class="text-5xl">Protect your crop in easy steps.</p>
+                <p class="text-lg mt-28 pl-10">Download the Kshema app.</p>
+                <p class="text-lg pl-10">Set up your profile.</p>
+                <p class="text-lg pl-10">Buy an online crop insurance policy for your needs.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-amber-50 h-auto">div
+        <div class="mt-14 w-1/2 mx-auto ">
+            <h1 class="text-5xl text-center font-bold">What sets us apart</h1>
+            <p class="text-center mt-9 text-lg">Our approach is different from that of traditional insurance providers.
+                We use cutting-edge algorithms and spatial-temporal technology to assess,
+                model and price insurance, and address pre-harvest risks at the farm level.</p>
+        </div>
+        <div class="ml-44 mt-16">
+            <div class="  h-auto w-72 inline-block rounded-tl-4xl  rounded-br-4xl  bg-green-900 ml-4 mb-5 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                <h1 class="text-cyan-50 text-4xl p-3 ">Empowering every farmer</h1>
+
+                <div class="flex items-center p-3 space-x-4 mt-20 ">
+                    <img class="h-9 w-9 " src="../Images/img-4.svg"
+                        alt="not">
+                    <p class="text-cyan-50">Covers 100+ crops against 8 perils</p>
+                </div>
+
+                <div class="flex items-center p-3 space-x-4 mt-10">
+                    <img class="h-9 w-9 " src="../Images/img-5.svg" alt="">
+                    <p class="text-cyan-50">Available in 10+ languages</p>
+                </div>
+
+                <div class="flex items-center p-3 space-x-4 mt-10 mb-14">
+                    <img class="h-9 w-9" src="../Images/img-6.svg" alt="">
+                    <p class="text-cyan-50">127 agro-climatic zones covered</p>
+                </div>
+
+
+            </div>
+            <div class="  h-auto w-72 inline-block rounded-tl-4xl  rounded-br-4xl bg-green-900 ml-4 mb-5 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                <h1 class="text-cyan-50 text-4xl p-3">Precise and fair premiums</h1>
+
+                <div class="flex items-center p-3 space-x-4  mt-20">
+                    <img class="h-9 w-9 " src="../Images/img-7.svg" alt="">
+                    <p class="text-cyan-50 ">Affordable insurance premiums</p>
+                </div>
+
+                <div class="flex items-center p-3 space-x-4  mt-10">
+                    <img class="h-9 w-9 " src="../Images/img-8.svg" alt="">
+                    <p class="text-cyan-50  ">Customised insurance coverages</p>
+                </div>
+
+                <div class="flex items-center p-3 space-x-4 mt-10 mb-14">
+                    <img class="h-9 w-9 " src="../Images/img-9.svg" alt="">
+                    <p class="text-cyan-50 mb-5">Digital KYC process</p>
+                </div>
+
+
+
+            </div>
+            <div class=" h-auto w-72 inline-block rounded-tl-4xl  rounded-br-4xl bg-green-900 ml-4 mb-5 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                <h1 class="text-cyan-50 text-4xl p-3">Tomorrow’s technology</h1>
+
+                <div class="flex items-center p-3 space-x-4  mt-20">
+                    <img class="h-9 w-9 " src="../Images/img-10.svg" alt="">
+                    <p class="text-cyan-50">Satellite based farm monitoring</p>
+                </div>
+
+                <div class="flex items-center p-3 space-x-4  mt-10">
+                    <img class="h-9 w-9 " src="../Images/img-11.svg" alt="">
+                    <p class="text-cyan-50 ">Geo-tagging</p>
+                </div>
+
+                <div class="flex items-center p-3 space-x-4  mt-10 mb-14">
+                    <img class="h-9 w-9" src="../Images/img-12.svg" alt="">
+                    <p class="text-cyan-50">Paperless & hassle-free process</p>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-amber-50 h-screen">div
+        <div class="mt-16 ml-32">
+
+
+            <div class="flex">
+                <div class=" inline-block">
+                    <h1 class=" text-4xl">8 Perils,</h1>
+                    <h1 class=" text-4xl">1 Solution.</h1>
+                </div>
+                <div class=" inline-block ml-96 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-13.svg" alt="">
+                    <p class="font-bold text-lg">Fire due to lighting</p>
+                </div>
+                <div class=" inline-block ml-50 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-14.svg" alt="">
+                    <p class="font-bold text-lg">Landslide</p>
+                </div>
+                <div class=" inline-block ml-50 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-15.svg" alt="">
+                    <p class="font-bold text-lg">Cyclone</p>
+                </div>
+            </div>
+
+            <div class="flex mt-9">
+                <div class=" w-80 mt-12 ">
+                    <p>Explore our customised, and comprehensive
+                        insurance products for farmers.</p>
+                </div>
+                <div class="inline  ml-56 mt-5 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-16.svg" alt="">
+                    <p class="font-bold text-lg">Flood</p>
+                </div>
+                <div class="inline  ml-64 mt-5 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-17.svg" alt="">
+                    <p class="font-bold text-lg">Inundation</p>
+                </div>
+                <div class="inline  ml-48 mt-5 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-18.svg" alt="">
+                    <p class="font-bold text-lg">Earthquake</p>
+                </div>
+            </div>
+
+            <div class="flex mt-24 justify-end">
+                <div class="inline mr-60 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-19.svg" alt="">
+                    <p class="font-bold text-lg">Animal Attack</p>
+                </div>
+                <div class="inline mr-80 hover:animate-bounce">
+                    <img class="h-20 w-20" src="C:\Users\HP\Desktop\ALL SEM\SEM 4\web project\Images\img-20.svg" alt="">
+                    <p class="font-bold text-lg">Hailstorm</p>
+                </div>
+
+            </div>
+            <div class=" inline-block rounded w-40 h-9 text-center bg-blue-500 hover:bg-blue-900">
+                <form>
+                    <button class="text-white align-middle">Explore All Plans</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-amber-50 h-screen">div
+        <div class="mt-10 ml-32">
+            <h1 class="text-4xl font-bold ">Kshema Offerings</h1>
+        </div>
+        <div class="overflow-x-auto flex snap-x snap-mandatory w-[80%] mt-16 ml-32">
+
+            <div class="flex-shrink-0  h-[100%] ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+
+
+            <div class="flex-shrink-0 h-[100%]  ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+
+
+            <div class="flex-shrink-0  h-[100%]  ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+
+
+            <div class="flex-shrink-0  h-[100%]  ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+
+
+            <div class="flex-shrink-0  h-[100%]  ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+
+
+
+            <div class="flex-shrink-0  h-[100%]  ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+            <div class="flex-shrink-0  h-[100%]  ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+            <div class="flex-shrink-0  h-[100%]  ml-9 w-60 snap-center rounded-2xl bg-[#C68EFD] p-4">
+                <p>Knowing how to write a paragraph is incredibly important. It’s
+                    a basic aspect of writing, and it is something that everyone should know how to do. There is a
+                    specific
+                    structure that you have to follow when you’re writing a paragraph. This structure helps make it
+                    easier
+                    for the reader to understand what is going on. Through writing good paragraphs, a person can
+                    communicate
+                    a lot better through their writing.</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

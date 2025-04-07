@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife Protection</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            padding-left: 10%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #308d46;
+        }
+
+        .alert-button {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .alert-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Slideshow Styling */
+        .slideshow {
+            margin-top: 4vw;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #slides {
+            display: flex;
+            transition: transform 1s ease-in-out;
+            animation: slide 16s infinite;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide #con {
+            width: 100%;
+            height: auto;
+        }
+
+        @keyframes slide {
+
+            0%,
+            33% {
+                transform: translateX(0);
+            }
+
+            38%,
+            66% {
+                transform: translateX(-100%);
+            }
+
+            71%,
+            100% {
+                transform: translateX(-200%);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200 light-mode">
+    <header class="fixed top-0 flex z-10 justify-between bg-gray-200 shadow-sm shadow-black items-center  w-full ">
+        <div class="flex items-center gap-3">
+            <img src="./image/a87020df-7af7-40d8-aba1-61c7819f1e46.jpg" height="50px" width="50px"
+                class="rounded-full">
+            <h1 class="text-2xl  font-semibold font-serif text-black">Crop Protection</h1>
+        </div>
+        <nav class="flex gap-4 text-black items-center">
+            <a href="#main" class="text-black text-sm text-sm hover:text-green-500">Home</a>
+            <div class="relative">
+                <button id="dashboardBtn" class="text-sm hover:text-green-500 focus:outline-none">Dashboard</button>
+                <div id="dashboardDropdown"
+                    class="absolute hidden mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-md z-50">
+                    <a href="#reportsight"
+                        class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Report Animal
+                        Sighting</a>
+                    <a href="#alertt"
+                        class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Alerts</a>
+                    <a href="weather.html"
+                        class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Weather Update</a>
+                    <a href="map.html" class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Map</a>
+                </div>
+            </div>
+            <a href="#sightings" class="text-black text-sm hover:text-green-500">Animal Sighting</a>
+            <a href="./leader.html" class="text-black text-sm hover:text-green-500">Experts</a>
+            <a href="contact.html" class="text-black text-sm hover:text-green-500">Contact</a>
+            <a href="./index.html" class="bg-green-500 text-black px-4 py-2 rounded-lg hover:bg-green-700">
+                <p>Logout</p>
+            </a>
+
+
+            <div class="alert-button" onclick="resetAlert()">
+                <img width="35" height="35" src="https://img.icons8.com/fluency/48/appointment-reminders--v1.png"
+                    alt="appointment-reminders--v1" />
+                <span class="alert-badge" id="alertCount">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="px-12">
+        <div class="max-w-2xl w-full p-4 bg-white rounded-lg shadow-lg mt-24">
+            <video class="w-full rounded-lg" autoplay muted loop>
+                <source src="./c031b408aa532c147896086a9a862e79.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+
+        <!-- About Section -->
+        <div id="about" class="bg-gray-100 text-center flex h-screen mt-14 pt-4">
+            <div class=" inline-block m-12">
+                <img class="w-[500px] h-[500px]" src="./image/9b56acb5-b7e1-40de-becb-4895a2b47439.jpg" alt="Not">
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-3xl  ml-16 font-bold">About Us</h2>
+                <p class="max-w-2xl mx-auto mt-12 ml-16 text-2xl text-center text-gray-700 h-[200px] w-[300px]">
+                    We are committed to helping farmers protect their crops using innovative and eco-friendly
+                    solutions.<br>
+                    Our mission is to ensure sustainable farming while maintaining harmony between agriculture and
+                    wildlife.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="h-screen bg-gray-100 mt-12 pt-4">
+            <div class="flex  m-12">
+                <div class="inline ">
+                    <img class="w-[500px] h-[500px]" src="./image/7fb7e07d-ef54-4915-b2ef-309519b0c31c.jpg" alt="Not">
+                </div>
+                <div class="inline ml-28 ">
+                    <p class="text-6xl">Protect your crop <br>in easy steps.</p>
+                    <p class="text-xl mt-28 ">Download the app.</p>
+                    <p class="text-xl ">Set up your profile.</p>
+                    <p class="text-xl ">Buy an online crop insurance policy for your needs.</p>
+                    <div class="flex gap-4 mt-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1280px-Google_Play_Store_badge_EN.svg.png"
+                            class="h-[50px] w-[150px]">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAACMCAMAAABmmcPHAAAAkFBMVEUEBwf///8AAAAAAwNvb2/GxsZcXV36+vpBQUHy8vLk5OSOjo78/Pz29vahoaHOzs4rKyvr6+sNDg68vLzU1NTf398bHByKioq0tLSZmZklJSW3t7cWFxewsLDLy8t8fHxSUlJra2tISUmpqak0NTV4eHhZWVknKCg+Pj6cnJxjZGQwMTFsbW2Dg4NGR0dOTk7JS8SXAAAT6klEQVR4nO1dCXejvA4NJoRCQlIKJCX72qbppP3//+5Zkg0GDAGSzrz5hjvnzGlZvFxkWZJlt9fr0KFDhw4dOnTo0KFDhw4dOnTo0KFDhw4dOnTo0KFDhw4dOnT4TWAcf7oN/31wkp9P49n/CdPtvvmjJOUHJY6x5SwyDGPSvAKTpXhYc07D+KlxaWw3jLcPaAMbDOPLjzBtspcPzwCsG5dvmp/7QX9z3ZzenjjV5kMaxNaGcWpOtGUYw0cQfTCMw08QzdjGMYyWRLPASOBY/QeNXU5Zv1VT7iJaNJ6NDWP8A0Qz6JbAaysx4rBFAe7gES38I0Rz9Unq6oeIZnM3lcnm7QRO4hdQ0OfrGoqIHzF4/wDR7BIJhfEzRLOek/JsvLUimisME+fEM0yoD7Bc/gjRQ0nvjxDNWKTw7PRaEp2UBkJ9vLuR/0WiFwrPRtC8+CwnjPnpjCoNP5PusPRzZH+k35VnM4XmTUczfyG9oiE697BaFcs9NzOMD2yCIDr/0F02LOurPLfQHHnhYztezJQEg/UXYRiuBti37XC4E5P693D4LH48zYZHfms2Z+zCHw6E1ZIWyth8aIXhOv6UJgEbjCdhaA1fUvJ2Ab9w1RHN2GkRRqIN/Nev4ZAbod8rel55bjq78rfX19lsJiSabV95gwbKN9rwhlizVkxnFbQRtTCDc0SbINKopVlflu1+c/EYcMUkZNsC0cGfXgxjtGSxYQx6oWgCfqSkUMZW6WjDCztfXtgI5s9iMveeXnNEm+zkya6dqU3QOGFk+WdFPo4pC0siek2/WfIDb4RhNWqu00gb3SfQBXUKugg0EBYdHeJXoHvHUKd8YmeXvPMhcs4uyB8fsxfXsMPQlx9bFkoziBV/TOB7gQyzk+FZH/EYrqP3xr6g5eEh8A1nnSXaBM8D2hAAR2B3QoVXXlaEVXnJoOBEuy5vqOe6Lv/UvOlxaHhh6CHT+ACXBvtwnQXYm8YkMVvl2Wo1KPJEz4BGIIT3CXUakPSJ4/oqpUpMmCCuXFlcuXQZwZQ/ynuDw0EUaoJYueBwsq0D8QGTG6PDJZbKyXDhd8ZvREdxJUs0NIU7mBxTPl7sOW/VG1QVwuMbI+P+kY4eM1m2Zxy4zdoLhPjBgHShhfCplA9Ul6SNyrPd+H0t0X2QSvyEMxJbkEo+APtiruWMv/rIuclcqBRbYdEkFcDLSaGg8IEfeGtvSCEXupvL5Bd/5INTx1ItoxDN5ja8Qm3g6mXBn97imMEPFIMuU3UeWh2madJgHDM5ogJGLf1MRLuxacNCleh2cZQC0b+wK7NU44MYGXM2tZEREMFdiNErdsZRBESPFDpNlhAdpp0CGkPVeHilEcP5/iWnyVGW6Dh9AwRxxCXym5e/p6p4eww1cJU17+R80seBAwItxJ+9j9J21OUIWpagpZ9RIHqDRE/SAkEcgJM1dgy6PP0wbD7pQddORHQoufJQkwsv6Jk3Sw4z9oRU9Yjl4/ZtAU4ofMRELqFSlegojUyZoGF4iVt4XFyJsto2S/RKNIhPkh4Nlidp3rnGqKHRgPIj8dHSQi8QPQZDGvq1T+RvAQ0HVcxp4L9E0F9gmBPTI6LXsvf8m5wToi8gTqIQE5TRG4zi+TD0ZJuh0GRqyZp3qL0+k3sWmWxpiVB7v5Ro4bCA+gHtFhmjxSth5cH4bMbRKeX52jbAWSB6Da184Z18TzoZow5+xv/5J/iA/7i1sbRJg+SIPiZEX9UAOSiJHR/FQ5jAbQeMBC7RByUQliMaxkNqBa9ASQPRUSOipx4S7RsZNCV6KF/0v1vKc9FhefFA8JYjqXZ7kmgYqw529ZtxsXZQYK/NiP6FzBrjbzISiOhVCdGfGaIPkuhmEp0QPVopaGg2SKLtjzuiyHmiOTkeL85GFSCurXAqAQNhyzsMk8sO5t4DOAdFolPVcUrlj9/CL8h18uiIfnKMquNDiRvkiJ6OqPzkXk51rBsQTeZR26UkJNpZX+WLZpsVknyswwNBw5lmk0xEEYouTAkxbzKfDZjJ7VR+GefAconmvsgomenOOBkmXELjYyasAvFIZjI0Sdcov/TbS/SaHJ46UJb2JJls+vX0LL6P+rkasZ2L3oVkBYC0JqbVnrQadHa9JJuKv+Uy6auXEY3sXGUpWCJ8M/Jf4Xcu0aAfvqTJYmetjkU6UeJImN8kuhCPlkTHaIbXoYOx+SV+tUJrdT2nQbKU5fnuMHEdx3HXh/5zk7GREs0/5XMoPamjkYaFQtFh3nO/L3xsLokD6ZOXEY3KRhhvWOAJif5FTcahg3SF+Ag53CrRW0PKoXQ8KlXHVWohDdFTA9ReTzSyiuZZmNrM/mqrUAke6izjuRjR8KU21cDJhQbCFwaABL3cnxi9yeCl8Lh3hh2RHQnuQigUcAXREPMKUTkefQyQQGEhlgoxn1j4egFeiQ0vu74DD9vfeM8SLniVRPMPb4N7ryEax48tusk+S7jhX+Bg5OCPPxl5onzKmeTvcqymNRUI9MG3giAg49b9kpTBt7M2uxgso52QK1tyTkuNQy3RyWTIb32NIJbTP0HU3GWC17B/4aVOiA2Mj3iLj5XPmcgRTSGpzW7syIH2XUE0jBHncBgzDdHUnWh8vcYLx9UTzaXZ1jBphDM+e/d2gfYmslBPKa3VMtNVcPSRCa4cdPCscMzRhj8nRE8k0T4RLYc1LY4hRJg0Fr8e3mXsRF7xz9+5lRGWLtG7FCatkGjUHQa6tWm6AZouGDVM47WKLZMhYp5VCypc6WJpMallLbJrYE3CMJwE41/P6jwKqiTyPF9JQWCXIDjJHiwWB8H5IAiSiMZhEbyDc74ItmIUnCzf86LVXsaFB5bj+fwuL4DEl329up4XcsE4BsEm02bG9q9qG9g5WMiQHYtlHcnTu5A/y33YU1IOW74uXpc0KTwdIsfz3HX8peV5X8VlNfwyZZStodRcKVqdyi/K48pVUzGC0iuZHC1ZZnqNFS8V2lCsSvO0bG2umUo16u/ZV7etaebwpg0t8zzMh6Qu5UsxC4WaFWquURuqny13NDAseAf8Lr20Fti8vd4gNE8R+xdhsvJ5sB7sa0d0DaTRuZaIas2G/zyYObrNZRWsTkPXQuoxtMOi47kWcIXhDkw6nuuBFQIcjdBZdjWB66N3oE3W0j8JzDZsjxZ5pUnNrMxPfThU9/931Kdtw+I2mxVon+PMzm+A55/vOWPPm9UkiqLJ63D7p6g28yvkzdAqDU9UHN07JOqBsYEaSHdW5z/CtJqH2gLtt9nJir0fljD2YuXanBGO3ybf96noUft2JnH45smtjaqZFkasuhbPlu0zVRo2JM63owmaZvGpFcslkR/VHTJ3yD+cttvLdeWqQ4jt43AU/S6i75oL2+8bhVxEw4YVpHZZwHWroYWlWWJzHFdJOgB7v1NWmrVkXcHjTdyxtwlGUgSJui32GNev5ROb2c+szCTpKvPR7yQ6quDxJlpzhMvYxisud7e3XG6CFGNWOSVLH38T0a2NDkjcAkmDQLh970JYRTVo2JWcZPA3Ed16QzfkFkEOJ0pc1bi45ctV3icnoexDVhFt3qi3uDx5yxG6j+hNa6Jd7CNOifl1sGQ1Gls/neb7kHjSqHCL99UnnTKi4SVIzobgY94zx3tUrpl/R669L6eKDkqfr+jxXUS3nQxJcwwZqepRhgk2iIfDIWZHbVeRZ4+c8OOopiLs4T7suGD7ceSMRl40ftJ3Ubi9++JNdo454KY/hJ9idQfA59By7ZHthIdBJgFlyh+LIRFtGkd2kszIP/duEXn8+Wj8VU71fUSv2hKNW9CemfghMzBQndiQV5OuZI5WSpqF2BbHjorBFOjVA+lojREKW5Uy8JOMjqOlLDi5ysEimMEI+YO/cClbTLGMnRSXyCqdb5guoa42Ws4kJGm4fw1FO3NwEGZc2cvsljslSQc2AEBO7yVz39N6eMIdK4p0wSEWRJuF9dN0nY690J5TsVtbZJTm7GN9O+DBfCSgEVq64LSLFUcr6g5D9VmI4SUluOEWFIQtmYZsTsP4GlC//EScdD0knwTTVXM3snvb5TY2U/pv/jqwRMm+zKAjjd9/NxSiGbXfmIzjsRDZkjOe7lxfaReooEop6RnND3VLHY7qEfA4OkCK9vOQuHZlUh0mVV1gIltxncjmM2JEmy4l91avprkJ9fkyGOxAR0RvgwuHyI8mRzLc4rS3J2GNko0OUNEFL4aLANKKTVIIa0zTZ++W2s58S653Ed3K2aApUCQ9o+5QVRCO6pGHSQywB4XP8NRhmSGLWVX8vo+HYMEDlAuqC5okKSv24ZgxCtCgIfMutTrE9rOPxOghzXNQiY75S8GnND+GdF+qa/xO+qN17lxgGbWJ25NMCimmsadIo1S+UaocBVvi1Ikvuu8o94lpjXWRvMsx2WXNtYIdzXoe8SafMsV4pwh2ErqPk50QsLkZdksmlUFnPG3e3Z3x6FZ2h6I55Hyl6A7SwRmbj2RPiArZ3smOFOogUqDdPcIU5ehnz94oEI1NUYe+KDgQRJM+DtJoCRatyBqp/l/6dty1wpLpb02QZCRbhPBLh6kUCKIzA1BSgD8T0RlWaczr1xBM1U70B6w01iEkNhNWIObI5ZFE91IBhtlDPTCN9irotwvdF74r1f0VwM31qQyTJZ+uPQqis07MEq/hHltBdCaAIZbySyIC3PNJbeNDOtBzRNNObCerXqjgvkJ0kGtptiHwTX090XdF/g34og1Tm2nKmCYhYpxQhrnm5+LxpGl3KdFOzopYZAvJV8nmQ3mYXDLyC0RjQ3LiSOr/oBCdRmbQYvJYBpD1ZetT0N/uJBo86Tr8SuABAjCDSDwTsYniGxAd2VaiNoxTonOuEhlPFcce8nr6gmq5faVANHJ61RU8UYhO7WRUBs51qIC2rWlzPsVUex/TTbQHEek5KbCQdKMy3l/p+ntIic6dQkviUmlsmoxs9qSqAtFI0puuYBQDM28gMeXExQz06+z3+YaI1yZMlyyexdVE96meXhnRdGJSdTOYsJOtEqKRt09dwX5KdLryZpbmeOmTXXJBhVaIjrWpxk3xGrg1iF7dIPrmYcukgWyxyytLtBDYnGNAtZUQjT3R5DyXRLhe7kyPRnzUPduReHQiFViC1H16olEa7lId+JipVFWQ6EhthryIfmhUTnT08lxASTMeoDsM3ON7o5eiNtQc/cxUjRbmRyXR6dFeeqJPyYeorh3J3OmJDqllmoKVyVBZtEe722VFlFWej2S1gqfdJlqsjBQbBCl6/B/8JzrjZ4jOWx0oDINyqwN1wu3jnsiyKCEazc6xruDXlOiRQjRElOyKvfX6vt+JmnkwFMnIjnHGsAQxaHV2tEkH7y1TorNp2SKR7/agosFz0RN91VWMiruvl2gcZg3ylnPnNLZDzfpIpE46eT2oRGePI6JBF6kueNYhw7nQuW3Qk5d91BM9V7+3uIa6n04jKhKNQlPvfA564c7AEsCt57XgUUqF5CTSHa7c8m0otCOEwA5Voq3MffxSmgBXrlE0tcmz6uBEO1WCSUlbak/kJaolTzSpggbZqQ+YDmuehkeimbcOxJGc4kQ/IlrVA+QcC+0oo3fqAU00yxTXNsz88nakfBA8D0KNRIkArTLchOn7pSdaqIKovheROdiuFfTuvaYmK9cV9fIhQ7S3T+Lp5GcIl0YSbQyS+/SGZgwz63XKlHN0SKDE+W9C/yqLRGIBNS34ohZcmAzF+MS1g+RS9S7xu0W65oH9eIKuxkAhkRRnhw5koR+USTGn7XlScBKijQMFppY0xTjFZEkkwjrRQhObzpxsW2m+8M7pCovYqh0LM41cdjnvFiVaLpt418Sym54WVUynjW+HutnkJJtFv4JGMU2oRPQrnidswZon+VNesjhLSTeYTAZromtxYosue0Ms1vhhEFiR8MuUuD3dHoULy6VBJg958A+nS39F38WR/oeG6CT2yVs6uw7HC6ik8lTBO3ey1E2kKdEcUrhWKdGHp6y/mp6WLYheZm1Srb+k61Uaj052dwDkwto+b+qGyUGTOqKL6QklCyxJk5ZNuc2wUFegX/BxTUI0jUEMMkvP8EmNjQWKFhSe4VxN/Zm861rAnpS/soNwB9nFrGR5KYmdLjOvjGL1u8DTo7zF9J1PQaqWurtWw+smlbKdH0WuzvBkvTCKIv9NIZqxq+iCF+zVdTxBNJ8jxRLVyCrkbchn2XK2TmTUCQa55xhbiYGTnG3L2Hkl6YdjgdIXTDZxeSPzYsLYW5DEybxJfGOf2j1HSdQ32WnC0C4SpxmEMtZhwhl8m01/n7PRZKyD359eTpv+d1VyIa4sDE68mMG7pmp+id/sv6nTM7/2ycs9fb/kCjb1kQy4fIQXfr096+7nq/wsOwbsFpz63n7PhJPEq28pQSWTabqmBpWqgziyYGkRaGvWFaGtVzRRW0h1Ffka28alH/JXr5R26KJ36n1d9O6vAsvPHPXQNqO0tBn/faJbpXi0+Zss1c34zxPdY8fmay3ew/dy/wNEt0nEe7CC7v0bRNOffmmC1ptYKtrwLxBdwrQ7mYTaHIafOIXt3yC6qD3CeC9sxO0452yOfuRPCP8jRPMZUaHTHx8Twx1++FooSRmTnzntjhNt25VE27Y9+vuJ5oRuiGp/ccn5OtwBWp4CH2wTx8rHDR4F8+V9Pn8v301r9vj9+c/ttv194HQeB5fLWevcYuxgu33cn/bW1l/pVt+6/xfBrPTb/0Md7dChQ4cOHTp06NChQ4cOHTp06NChQ4cOHTp06NChQ4cOHTp06PAP43/ojxm0ekZd3QAAAABJRU5ErkJggg=="
+                            class="h-[50px] w-[150px] rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mt-24 bg-gray-100 py-4  h-auto">
+            <div class="mt-14 w-1/2 mx-auto ">
+                <h1 class="text-5xl text-center font-bold">What sets us apart</h1>
+                <p class="text-center mt-9 text-lg">Our approach is different from that of traditional insurance
+                    providers.
+                    We use cutting-edge algorithms and spatial-temporal technology to assess,
+                    model and price insurance, and address pre-harvest risks at the farm level.</p>
+            </div>
+            <div class="ml-32 mt-16">
+                <div
+                    class="  h-auto w-72 inline-block rounded-tl-4xl  rounded-br-4xl  bg-green-900 ml-4 mb-5 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                    <h1 class="text-cyan-50 text-4xl p-3 ">Empowering every farmer</h1>
+
+                    <div class="flex items-center p-3 space-x-4 mt-20 ">
+                        <img class="h-9 w-9 " src="./images/img-4.svg" alt="not">
+                        <p class="text-cyan-50">Covers 100+ crops against 8 perils</p>
+                    </div>
+
+                    <div class="flex items-center p-3 space-x-4 mt-10">
+                        <img class="h-9 w-9 " src="./images/img-5.svg" alt="">
+                        <p class="text-cyan-50">Available in 10+ languages</p>
+                    </div>
+
+                    <div class="flex items-center p-3 space-x-4 mt-10 mb-14">
+                        <img class="h-9 w-9" src="./images/img-6.svg" alt="">
+                        <p class="text-cyan-50">127 agro-climatic zones covered</p>
+                    </div>
+
+
+                </div>
+                <div
+                    class="  h-auto w-72 inline-block rounded-tl-4xl  rounded-br-4xl bg-green-900 ml-4 mb-5 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                    <h1 class="text-cyan-50 text-4xl p-3">Precise and fair premiums</h1>
+
+                    <div class="flex items-center p-3 space-x-4  mt-20">
+                        <img class="h-9 w-9 " src="./images/img-7.svg" alt="">
+                        <p class="text-cyan-50 ">Affordable insurance premiums</p>
+                    </div>
+
+                    <div class="flex items-center p-3 space-x-4  mt-10">
+                        <img class="h-9 w-9 " src="./images/img-8.svg" alt="">
+                        <p class="text-cyan-50  ">Customised insurance coverages</p>
+                    </div>
+
+                    <div class="flex items-center p-3 space-x-4 mt-10 mb-14">
+                        <img class="h-9 w-9 " src="./images/img-9.svg" alt="">
+                        <p class="text-cyan-50 mb-5">Digital KYC process</p>
+                    </div>
+
+
+
+                </div>
+                <div
+                    class=" h-auto w-72 inline-block rounded-tl-4xl  rounded-br-4xl bg-green-900 ml-4 mb-5 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+                    <h1 class="text-cyan-50 text-4xl p-3">Tomorrow’s technology</h1>
+
+                    <div class="flex items-center p-3 space-x-4  mt-20">
+                        <img class="h-9 w-9 " src="./images/img-10.svg" alt="">
+                        <p class="text-cyan-50">Satellite based farm monitoring</p>
+                    </div>
+
+                    <div class="flex items-center p-3 space-x-4  mt-10">
+                        <img class="h-9 w-9 " src="./images/img-11.svg" alt="">
+                        <p class="text-cyan-50 ">Geo-tagging</p>
+                    </div>
+
+                    <div class="flex items-center p-3 space-x-4  mt-10 mb-14">
+                        <img class="h-9 w-9" src="./images/img-12.svg" alt="">
+                        <p class="text-cyan-50">Paperless & hassle-free process</p>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="mt-24 bg-gray-100 h-auto pb-4">
+            <div class="mt-14 ml-32 pt-14">
+
+
+                <div class="flex">
+                    <div class=" inline-block">
+                        <h1 class=" text-4xl">8 Perils,</h1>
+                        <h1 class=" text-4xl">1 Solution.</h1>
+                    </div>
+                    <div class=" inline-block ml-40 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-13.svg" alt="">
+                        <p class="font-bold text-lg">Fire due to lighting</p>
+                    </div>
+                    <div class=" inline-block ml-44 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-14.svg" alt="">
+                        <p class="font-bold text-lg">Landslide</p>
+                    </div>
+                    <div class=" inline-block ml-48 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-15.svg" alt="">
+                        <p class="font-bold text-lg">Cyclone</p>
+                    </div>
+                </div>
+
+                <div class="flex mt-9">
+                    <div class=" w-72 mt-12 mr-4">
+                        <p>Explore our customised, and comprehensive
+                            insurance products for farmers.</p>
+                    </div>
+                    <div class="inline  ml-30 mt-5 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-16.svg" alt="">
+                        <p class="font-bold text-lg">Flood</p>
+                    </div>
+                    <div class="inline  ml-44 mt-5 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-17.svg" alt="">
+                        <p class="font-bold text-lg">Inundation</p>
+                    </div>
+                    <div class="inline  ml-48 mt-5 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-18.svg" alt="">
+                        <p class="font-bold text-lg">Earthquake</p>
+                    </div>
+                </div>
+
+                <div class="flex mt-24 justify-end">
+                    <div class="inline mr-60 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-19.svg" alt="">
+                        <p class="font-bold text-lg">Animal Attack</p>
+                    </div>
+                    <div class="inline mr-80 hover:animate-bounce">
+                        <img class="h-20 w-20" src="./images/img-20.svg" alt="">
+                        <p class="font-bold text-lg">Hailstorm</p>
+                    </div>
+
+                </div>
+                <div class=" inline-block rounded w-40 h-9 text-center bg-blue-500 hover:bg-blue-900">
+                    <form>
+                        <button class="text-white align-middle">Explore All Plans</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-100 mt-24 mb-4 p-4">
+            <div id="sightings" class="bg-gray-200 mx-52 mt-12 py-8">
+                <h2 class="text-center font-bold font-serif text-2xl">Report Sighting</h2>
+                <form id="sightingForm" enctype="multipart/form-data" class="flex flex-col gap-6 m-7">
+                    <input type="text" name="location" placeholder="Location (Latitude,Longitude)" required
+                        class="border p-2 rounded-lg">
+                    <input type="text" name="species" placeholder="Animal Species" required
+                        class="border p-2 rounded-lg">
+                    <input type="number" name="count" placeholder="Number of Animals" required
+                        class="border p-2 rounded-lg">
+                    <input type="file" name="image" accept="image/*" class="p-2">
+
+                    <button type="submit" class="rounded-lg bg-green-400 h-12 w-96 mx-36 hover:bg-green-600 text-white"
+                        onclick="addSighting()" id="sub">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="recentSightings" class="p-6 mt-24 bg-gray-100">
+            <h2 class="text-2xl text-center font-bold mb-4">Recent Sightings</h2>
+            <div id="sightingsContainer">
+            </div>
+        </div>
+
+
+
+
+        <div class="p-12 px-36 mt-24 bg-gray-100">
+            <h1 class="text-3xl font-bold font-serif text-center">Strategies To Control Wildlife On Your Farm</h1>
+            <p class="mt-6 text-xl">
+                Wild animal attacks are a special challenge for farmers throughout the world. Animals such as deer, wild
+                pigs, rabbits, moles, elephants, monkeys, and many others may cause serious damage to crops. They can
+                damage the plants by feeding on plant parts or simply by running over the field and trampling over the
+                crop fields.
+            </p>
+
+            <h1 class="text-3xl mt-8 font-serif">Top Strategies to Protect Crops from Wild Animal</h1>
+            <p class="mt-6 text-xl">Successful farmers always seek to determine the satisfactory level of wild animal
+                crop
+                protection using
+                one of the following five technologies:</p>
+
+            <h1 class="mt-6 text-2xl font-bold">Agriculture fences</h1>
+            <p class="mt-6 text-xl">
+                Fencing is a popular wild animal deterrent that can last for many years. Agricultural fences are quite
+                an effective wild animal protection technology. However, utilizing fences as a practice is often
+                regulated. Some local and state entities may restrict or prevent the use of certain types of fences.
+                Therefore, before deciding on a suitable fence, it’s important to check local laws and regulations.
+
+            </p>
+
+            <div>
+                <img class="float-right h-48 w-96" src="./image/Screenshot 2025-04-05 141818.png">
+                <p class="mt-6 text-xl"><b>Wire fences:</b> are constructed of metal wires woven together forming a
+                    physical
+                    barrier. The fences are
+                    effective, long-lasting, and require relatively little maintenance. However, they are expensive and
+                    recommended only for the protection of high-value crops.</p>
+            </div>
+
+            <div class="mt-20">
+                <img class="float-right h-48 w-96" src="./image/Screenshot 2025-04-05 141828.png">
+                <p class="mt-6 text-xl"><b>Plastic fences:</b> polypropylene fences are generally less expensive and
+                    easier
+                    to install and repair than
+                    other types. Additionally, these fences are widely acceptable and meet various regulations. Their
+                    disadvantage includes their short lifespan (up to 10 years) and questionable effectiveness in areas
+                    with
+                    a higher possibility of wild animal crop damage.</p>
+
+            </div>
+
+            <div class="mt-14">
+                <p class=" text-xl">
+                    <img src="./image/Screenshot 2025-04-05 141840.png" class="float-right h-48 w-96">
+                    <b>Electric fences:</b> are constructed to inflict an electric shock to animals that come in contact
+                    with the
+                    fence, thus preventing animals from crossing the fence. These fences are long-lasting and an
+                    effective
+                    crop
+                    protection measure. Costs vary depending on the specific type and size of an area. Before purchasing
+                    electric fences, it’s very important to make sure they are allowed for use in a specific area, and
+                    for
+                    protection against endangered animal species. Additionally, it’s recommended that electric fences
+                    are
+                    marked
+                    with a warning sign to prevent any possible human contact.
+                </p>
+                <!-- <img src="./image/Screenshot 2025-04-05 141847.png" class="float-left h-48 w-96"> -->
+            </div>
+
+            <div class="mt-14">
+                <h1 class="mt-6 text-2xl font-bold">Natural repellents</h1>
+                <p class="mt-6 text-xl">
+                    Some farmers prefer using natural resources instead of mechanical or chemical protective practices.
+                    There
+                    are various ways to minimize crop loss from wild animals, including:</p><br>
+                    <img src="./image/Screenshot 2025-04-05 141855.png" class="float-right h-48 w-96">
+                <b>Smoke:</b> in some areas, farmers burn elephant dung or other materials that smolder and create heavy
+                smoke
+                <br><b>Fish or garlic natural emulsion:</b> repels rabbits and deer
+                <br><b>Beehive fencing:</b> for instance, elephants are repelled by the sound of honey bees; this
+                practice
+                is
+                beneficial as it serves as an extra source of income
+                <br><b>Chili peppers:</b> the chemical Capsaicin makes chili peppers hot; an excellent repellent against
+                elephants, monkeys, squirrels, and some other wild animals; farmers who plant chili peppers will also
+                benefit
+                from an extra source of income
+                Lavender, soybean, peas, and beans are excellent repellents against rabbits and are also an additional
+                source of
+                income
+                <br><b>Egg-based repellent: </b>homemade repellent against deer
+                <br><b>Castor oil:</b> is a natural repellent that keeps away burrowing animals such as moles
+                <br><b>Chemical repellents</b> which include active substances such as Anthraquinone, Butanethiol, and
+                Methyl
+                Anthranilate can be used to keep wild animals away from crops.
+            </div>
+        </div>
+
+
+
+        <!-- Weather Update Section -->
+        <div class="flex bg-gray-100 my-24 justify-center">
+            <div id="container" class="my-12 w-[400px] p-6 rounded-lg shadow-lg">
+                <h1 class="text-2xl font-bold text-center mb-4">Weather Update</h1>
+                <input type="text" id="city" placeholder="Enter city name"
+                    class="w-full p-2 border border-gray-300 rounded-lg mb-4">
+                <button onclick="getWeather()" class="w-full bg-green-400 text-white p-2 rounded-lg hover:bg-green-600">
+                    Get Weather
+                </button>
+                <div class="flex justify-center ">
+                    <div id="weather-info" class="mt-4 text-center"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-green-500 h-[400px] w-full mt-12 flex gap-6 justify-between">
+        <div class=" h-full w-[22%] text-lg p-12">
+            <a href="#main" class="hover:text-white">Home</a><br><br><br>
+            <a href="#about" class="hover:text-white">About</a><br><br><br>
+            <a href="contact.html" class="hover:text-white">Contact</a><br><br><br>
+            <a href="#" class="hover:text-white">Terms and Condition</a><br><br><br>
+        </div>
+        <div class=" h-full w-[22%] p-6">
+            <a href="https://pmfby.gov.in/" target="_blank">
+                <img src="./image/download.png" class="rounded-full h-[90px] w-[250px]"></a>
+        </div>
+        <div class=" h-full w-[24%] p-12 text-lg">
+            <h1>Contact</h1><br>
+            <i class="ri-phone-fill"></i> +91 8416086839 <br>
+            <i class="ri-mail-fill"></i> ayan@gmail.com<br><br><br>
+
+            <h1>Social Media</h1><br>
+            <i class="ri-facebook-box-fill text-2xl"></i> <i class="ri-instagram-fill text-2xl"></i> <i
+                class="ri-youtube-fill text-2xl"></i>
+            <i class="ri-twitter-x-fill text-2xl"></i>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-green-700 text-white text-center p-4">
+        &copy; 2025 Crop Protection | All rights reserved.
+    </footer>
+
+
+
+
+
+
+
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Leaflet Heatmap Plugin -->
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+    <script>
+        function toggleAdvice() {
+            document.getElementById('advice-content').classList.toggle('hidden');
+        }
+        const dashboardBtn = document.getElementById("dashboardBtn");
+        const dropdownMenu = document.getElementById("dashboardDropdown");
+        dashboardBtn.addEventListener("click", function (event) {
+            event.stopPropagation();
+            dropdownMenu.classList.toggle("hidden");
+        });
+        document.addEventListener("click", function (event) {
+            if (!dropdownMenu.contains(event.target) && event.target !== dashboardBtn) {
+                dropdownMenu.classList.add("hidden");
+            }
+        });
+
+
+
+
+        // community forum
+        function postForumMessage() {
+            // Get the input values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const address = document.getElementById('address').value;
+            const message = document.getElementById('forumInput').value;
+
+            // Validate the inputs
+            if (!firstName || !lastName || !address || !message) {
+                alert('All fields are required');
+                return;
+            }
+
+            // Create the data object to send
+            const data = {
+                firstName: firstName,
+                lastName: lastName,
+                address: address,
+                message: message
+            };
+
+            // Send the data to the PHP script using AJAX
+            fetch('post_forum_message.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        // Clear the input fields
+                        document.getElementById('firstName').value = '';
+                        document.getElementById('lastName').value = '';
+                        document.getElementById('address').value = '';
+                        document.getElementById('forumInput').value = '';
+
+                        // Optionally, you can remove the post display from the frontend
+                        const forumPosts = document.getElementById('forumPosts');
+                        forumPosts.innerHTML = ''; // Clear the posts display
+                    } else {
+                        alert(result.error || 'Failed to post message');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while posting the message');
+                });
+        }
+
+
+
+
+
+        //  alert count
+        document.addEventListener("DOMContentLoaded", function () {
+            let count = localStorage.getItem("alertCount") || 0;
+            document.getElementById("alertCount").textContent = count;
+        });
+
+        function addSighting() {
+            let count = localStorage.getItem("alertCount") || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem("alertCount", count);
+            document.getElementById("alertCount").textContent = count;
+
+            // document.getElementById("sightingsContainer").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function resetAlert() {
+            localStorage.setItem("alertCount", 0);
+            document.getElementById("alertCount").textContent = "0";
+
+            const recentSightings = document.getElementById("sub");
+            recentSightings.scrollIntoView({ behavior: "smooth" });
+        }
+
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+<!-- <header class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold text-gray-800">Wildlife Protection</h1>
+    <nav>
+        <a href="#sightings" class="hover:text-green-500">Sightings</a>
+        <a href="#alerts" class="hover:text-green-500">Alerts</a>
+        <a href="#forum" class="hover:text-green-500">Forum</a>
+        <a href="./loginsignup/index.php" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700">Login</a>
+
+    </nav>
+</header> -->

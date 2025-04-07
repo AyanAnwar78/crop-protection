@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="flex fixed top-0 justify-between items-center bg-gray-200 shadow-lg w-full">
+        <div class="flex items-center gap-3 m-2">
+            <img src="../image/a87020df-7af7-40d8-aba1-61c7819f1e46.jpg" height="50px"
+                width="50px" class="rounded-full">
+        </div>
+        <nav class="flex gap-4 text-black items-center pr-8">
+
+            <a href="main.html" class="text-black text-sm hover:text-green-500">Home</a>
+            <a href="weather.html" class="text-black text-sm hover:text-green-500">Weather</a>
+            <a href="./leader.html" class="text-black text-sm hover:text-green-500">Experts</a>
+            <a href="contact.html" class="text-black text-sm hover:text-green-500">Contact</a>
+
+        </nav>
+    </div>
+
+    <section id="mapSection" class="h-[500px] bg-amber-50 mt-28">
+        <h2 class="text-xl text-center font-bold py-2">Wildlife Sightings Map</h2>
+        <div class="flex justify-center items-center ">
+            <div class="w-[80%] h-[400px] rounded-lg shadow-lg border border-gray-300 overflow-hidden">
+                <div id="map" class="w-full h-full"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+            <!-- Leaflet CSS -->
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        
+
+            <!-- Leaflet JS -->
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        
+            <!-- Leaflet Heatmap Plugin -->
+            <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+
+    <script>
+
+
+        // Initialize Map centered on India
+        const map = L.map('map').setView([22.3511, 78.6677], 5); // Center of India
+
+        // Base Layer - OpenStreetMap
+        const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Heatmap Data - Example Wildlife Sightings in India
+        const heatData = [
+            [22.57, 88.36, 0.7],  // Kolkata
+            [28.61, 77.23, 0.9],  // Delhi
+            [28.71, 77.20, 0.9],  // Delhi
+            [28.65, 77.22, 0.9],  // Delhi
+            [19.07, 72.87, 0.8],  // Mumbai
+            [13.08, 80.27, 0.6],  // Chennai
+            [26.85, 80.94, 0.7],  // Lucknow
+            [25.45, 81.85, 0.8],  // Prayagraj
+            [27.17, 78.02, 0.9],  // Agra
+            [23.03, 72.58, 0.6],  // Ahmedabad
+            [15.30, 74.12, 0.8],  // Goa
+            [21.15, 79.09, 0.9],  // Nagpur
+            [17.38, 78.48, 0.7],  // Hyderabad
+            [11.41, 76.70, 0.8],  // Ooty
+            [31.63, 74.87, 0.9],  // Amritsar
+            [26.91, 75.78, 0.7]   // Jaipur
+        ];
+
+        // Heatmap Layer
+        const heatLayer = L.heatLayer(heatData, {
+            radius: 30, // Spread of the heat points
+            blur: 20,
+            maxZoom: 10
+        });
+
+        // Animal Sightings - Different Layers
+        const tigerLayer = L.layerGroup([
+            L.marker([22.57, 88.36]).bindPopup("Tiger Sighting - Kolkata"),
+            L.marker([21.15, 79.09]).bindPopup("Tiger Sighting - Nagpur"),
+            L.marker([26.91, 75.78]).bindPopup("Tiger Sighting - Jaipur")
+        ]);
+
+        const elephantLayer = L.layerGroup([
+            L.marker([11.41, 76.70]).bindPopup("Elephant Sighting - Ooty"),
+            L.marker([17.38, 78.48]).bindPopup("Elephant Sighting - Hyderabad"),
+            L.marker([15.30, 74.12]).bindPopup("Elephant Sighting - Goa")
+        ]);
+
+        const leopardLayer = L.layerGroup([
+            L.marker([28.61, 77.23]).bindPopup("Leopard Sighting - Delhi"),
+            L.marker([26.85, 80.94]).bindPopup("Leopard Sighting - Lucknow"),
+            L.marker([19.07, 72.87]).bindPopup("Leopard Sighting - Mumbai")
+        ]);
+
+        const CowLayer = L.layerGroup([
+            L.marker([28.71, 77.20]).bindPopup("Cow Sighting - Delhi"),
+            L.marker([28.65, 77.22]).bindPopup("Cow Sighting - Delhi")
+        ]);
+
+        // Layer Control
+        L.control.layers({
+            "Base Map": baseLayer
+        }, {
+            "Heatmap (Frequent Sightings)": heatLayer,
+            "Tiger Sightings": tigerLayer,
+            "Elephant Sightings": elephantLayer,
+            "Leopard Sightings": leopardLayer,
+            "Cow Sightings": CowLayer
+        }).addTo(map);
+
+        // Default Active Layers
+        heatLayer.addTo(map);
+
+
+
+    </script>
+</body>
+
+</html>

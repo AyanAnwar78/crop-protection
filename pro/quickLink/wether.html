@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Weather Update Section -->
+    <div id="container" class="mt-12 w-[400px] h-auto bg-red-300 p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold text-center mb-4">Weather Update</h1>
+        <input type="text" id="city" placeholder="Enter city name"
+            class="w-full p-2 border border-gray-300 rounded-lg mb-4">
+        <button onclick="getWeather()" class="w-full bg-green-400 text-white p-2 rounded-lg hover:bg-green-600">
+            Get Weather
+        </button>
+        <div id="weather-info" class="mt-4 text-center"></div>
+    </div>
+
+
+
+
+    <script>
+
+
+        //      weather     //
+        async function getWeather() {
+            const city = document.getElementById("city").value;
+            if (!city) {
+                alert("Please enter a city name");
+                return;
+            }
+
+            const apiKey = "156d9e29e84dfcd1f8472d9e8fee3031"; // Replace with your actual API key
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.cod !== 200) {
+                    document.getElementById("weather-info").innerHTML = `<p class="text-red-500">${data.message}</p>`;
+                    return;
+                }
+
+                document.getElementById("weather-info").innerHTML = `
+            <h2 class="text-xl font-semibold">${data.name}, ${data.sys.country}</h2>
+            <p class="text-lg">Temperature: ${data.main.temp}°C</p>
+            <p class="text-lg">Weather: ${data.weather[0].description}</p>
+            <p class="text-lg">Humidity: ${data.main.humidity}%</p>
+        `;
+            } catch (error) {
+                document.getElementById("weather-info").innerHTML = `<p class="text-red-500">Error fetching data</p>`;
+            }
+        }
+    </script>
+</body>
+
+</html>

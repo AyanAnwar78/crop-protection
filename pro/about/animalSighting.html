@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <section id="sightings">
+        <h2 class="text-center font-bold font-serif text-2xl">Report Sighting</h2>
+        <form id="sightingForm" enctype="multipart/form-data" class="flex gap-6 m-7">
+            <input type="text" name="location" placeholder="Location (Latitude,Longitude)" required
+                class="border p-2 rounded-lg">
+            <input type="text" name="species" placeholder="Animal Species" required
+                class="border p-2 rounded-lg">
+            <input type="number" name="count" placeholder="Number of Animals" required
+                class="border p-2 rounded-lg">
+            <input type="file" name="image" accept="image/*" class="p-2">
+            <button type="submit" class="rounded-lg bg-green-400 hover:bg-green-600 text-white"
+                onclick="addSighting()">Submit</button>
+        </form>
+    </section>
+
+    <section id="recentSightings" class="p-6">
+        <h2 class="text-2xl text-center font-bold mb-4">Recent Sightings</h2>
+        <div id="sightingsContainer">
+        </div>
+    </section>
+    
+
+
+
+    <script>
+        
+            //  alert count
+            document.addEventListener("DOMContentLoaded", function () {
+                let count = localStorage.getItem("alertCount") || 0;
+                document.getElementById("alertCount").textContent = count;
+            });
+
+            function addSighting() {
+                let count = localStorage.getItem("alertCount") || 0;
+                count = parseInt(count) + 1;
+                localStorage.setItem("alertCount", count);
+                document.getElementById("alertCount").textContent = count;
+
+                // document.getElementById("sightingsContainer").scrollIntoView({ behavior: "smooth" });
+            }
+
+            function resetAlert() {
+                localStorage.setItem("alertCount", 0);
+                document.getElementById("alertCount").textContent = "0";
+                document.getElementById("sightingsContainer").scrollIntoView({ behavior: "smooth" });
+            }
+    </script>
+</body>
+</html>

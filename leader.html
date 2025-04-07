@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="flex fixed top-0 justify-between items-center bg-gray-200 shadow-lg w-full">
+        <div class="flex items-center gap-3 m-4">
+            <img src="https://i.pinimg.com/736x/73/24/da/7324daee0903190950b8aa7ad2edbf2d.jpg" height="50px"
+                width="50px" class="rounded-full">
+        </div>
+        <nav class="flex gap-4 text-black items-center pr-12">
+            
+            <a href="main.html" class="text-black text-xl hover:text-green-500">Home</a>
+            <a href="./leader.html" class="text-black text-xl hover:text-green-500">Guidelines</a>
+            <a href="contact.html" class="text-black text-xl hover:text-green-500">Contact</a>
+
+
+        </nav>
+    </header>
+
+    <div class="mt-32">
+    <h1 class="text-5xl text-center mt-34 ml-28 font-bold">Our Leadership</h1>
+    <div class="flex justify-center gap-6 mt-8 p-5 h-auto">
+
+        <div class="rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5 hover:shadow-black/40 w-[128%] text-center">
+            <img src="./images/img-29.jpg" class="size-56 mx-auto rounded-2xl">
+            <p class="text-lg mt-2 font-bold">Natraj Nukala</p>
+            <button onclick="openModal()"
+                class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Learn More</button>
+        </div>
+        <!-- Modal 1-->
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white shadow-lg rounded-lg p-6 w-[900px] h-[400px] text-center">
+                <h2 class="text-2xl font-bold text-gray-900">Natraj Nukala</h2>
+                <!-- <p class="text-blue-600 text-sm mb-2">Founder, Chairman & Director <a href="#" class="underline">LinkedIn ↗</a></p> -->
+                <p class="text-gray-700 text-sm leading-relaxed text-left">
+                    He has an undergraduate degree in engineering from India and a master's in risk management from
+                    New York University, USA. He has been involved with the insurance sector for over a decade while
+                    his family interests include agriculture & textile businesses. This gave him a first-hand experience
+                    and deep insight into the Indian agri sector and the workings of the Indian farmer. He decided to
+                    bring
+                    his expertise and his experience together to create Kshema General Insurance Ltd. He also
+                    established a
+                    successful insurance broking company, ITUS before taking the plunge in crop insurance with Kshema.
+                </p>
+                <div class="mt-4 flex justify-center">
+                    <img src="./images/img-29.jpg" alt="Natraj Nukala"
+                        class="w-32 h-32 object-cover rounded-full border-2 border-gray-300">
+                </div>
+                <button onclick="closeModal()"
+                    class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Close</button>
+            </div>
+        </div>
+
+
+
+        <div class="rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5 hover:shadow-black/40 w-[128%] text-center">
+            <img src="./images/img-30.jpg" class="size-56 mx-auto rounded-2xl">
+            <p class="text-lg mt-2 font-bold">Dr Vyasa Krishna Burugupalli</p>
+            <button onclick="openModal1()"
+                class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Learn More</button>
+        </div>
+        <!-- Modal 2-->
+        <div id="modal1" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white shadow-lg rounded-lg p-6 w-[900px] h-[400px] text-center">
+                <h2 class="text-2xl font-bold text-gray-900">Dr Vyasa Krishna Burugupalli</h2>
+                <!-- <p class="text-blue-600 text-sm mb-2">Founder, Chairman & Director <a href="#" class="underline">LinkedIn ↗</a></p> -->
+                <p class="text-gray-700 text-sm leading-relaxed text-left">
+                    Dr Burugupalli is a veteran of the insurance industry with an illustrious career spanning over 45
+                    years in different regulatory regimes across continents. He was the Chief Executive Officer of the
+                    First Insurance Company Limited in Kampala before taking over as the MD and CEO of Kshema General
+                    Insurance Limited. His leadership also extends to guiding various NGOs, including the Bill and
+                    Melinda Gates Foundation grantees, on microinsurance. He holds a doctoral qualification in insurance
+                    risk management. He is a Fellow of the Australian and New Zealand Institute of Insurance and Finance
+                    as well as a Certified Insurance Practitioner. He is also a Fellow of the Insurance Training College
+                    of Uganda.
+                </p>
+                <div class="mt-4 flex justify-center">
+                    <img src="./images/img-30.jpg" alt="Dr Vyasa Krishna Burugupalli"
+                        class="w-32 h-32 object-cover rounded-full border-2 border-gray-300">
+                </div>
+                <button onclick="closeModal1()"
+                    class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Close</button>
+            </div>
+        </div>
+
+
+        <div class="rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5 hover:shadow-black/40 w-[128%] text-center">
+            <img src="./images/img-31.jpg" class="size-56 mx-auto rounded-2xl">
+            <p class="text-lg mt-2 font-bold">Rajeshnani Dasari</p>
+            <button onclick="openModal2()"
+                class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Learn More</button>
+        </div>
+
+        <!-- Modal 3-->
+        <div id="modal2" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white shadow-lg rounded-lg p-6 w-[900px] h-[400px] text-center">
+                <h2 class="text-2xl font-bold text-gray-900">Rajeshnani Dasari</h2>
+                <!-- <p class="text-blue-600 text-sm mb-2">Founder, Chairman & Director <a href="#" class="underline">LinkedIn ↗</a></p> -->
+                <p class="text-gray-700 text-sm leading-relaxed text-left">
+                    Rajesh is a technologist with over two decades of experience across insurance, automotive,
+                    manufacturing, pharmaceutical and high-tech industries. He was with Oracle Corporation as Senior
+                    Director in emerging technologies of Mobility, Bots, IoT, and Blockchain in his most recent stint.
+                    Prior to this, he was leading Oracle’s efforts to serve customers in their adoption of cloud and
+                    emerging technologies. Rajesh is an alumnus of prestigious institutions like BITS Pilani (India),
+                    Clemson University, South Carolina (USA), and State University of New York College at Buffalo (USA).
+                </p>
+                <div class="mt-4 flex justify-center">
+                    <img src="./images/img-31.jpg" alt="Rajeshnani Dasari"
+                        class="w-32 h-32 object-cover rounded-full border-2 border-gray-300">
+                </div>
+                <button onclick="closeModal2()"
+                    class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex justify-center gap-6  mt-2 p-5 h-auto">
+
+
+        <div class="rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5 hover:shadow-black/40 w-[128%] text-center">
+            <img src="./images/img-32.jpg" class="size-56 mx-auto rounded-2xl">
+            <p class="text-lg mt-2 font-bold">Natraj Nukala</p>
+            <button onclick="openModal3()"
+                class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Learn More</button>
+        </div>
+
+        <!-- Modal 4-->
+        <div id="modal3" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white shadow-lg rounded-lg p-6 w-[900px] h-[400px] text-center">
+                <h2 class="text-2xl font-bold text-gray-900">Deepa Karthykeyan</h2>
+                <!-- <p class="text-blue-600 text-sm mb-2">Founder, Chairman & Director <a href="#" class="underline">LinkedIn ↗</a></p> -->
+                <p class="text-gray-700 text-sm leading-relaxed text-left">
+                    Deepa is co-founder and partner of Athena Infonomics – a global impact solutions group. Deepa has
+                    led several programmes in Asia and Africa with a focus on advancing equitable and safe public
+                    services in changing urban contexts. She serves as part of the Technical Advisory Group for the
+                    Global Partnership for Sustainable Development Data (GPSDD) and is a member of the IWA digital water
+                    program steering committee. Deepa holds a master’s degree in economics from the National University
+                    of Singapore.
+                </p>
+                <div class="mt-4 flex justify-center">
+                    <img src="./images/img-32.jpg" alt="Deepa Karthykeyan"
+                        class="w-32 h-32 object-cover rounded-full border-2 border-gray-300">
+                </div>
+                <button onclick="closeModal3()"
+                    class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Close</button>
+            </div>
+        </div>
+
+
+        <div class="rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5 hover:shadow-black/40 w-[128%] text-center">
+            <img src="./images/img-33.jpg" class="size-56 mx-auto rounded-2xl">
+            <p class="text-lg mt-2 font-bold">Deepa Karthykeyan</p>
+            <button onclick="openModal4()"
+                class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Learn More</button>
+        </div>
+
+        <!-- Modal 5-->
+        <div id="modal4" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white shadow-lg rounded-lg p-6 w-[900px] h-[400px] text-center">
+                <h2 class="text-2xl font-bold text-gray-900">Natraj Nukala</h2>
+                <!-- <p class="text-blue-600 text-sm mb-2">Founder, Chairman & Director <a href="#" class="underline">LinkedIn ↗</a></p> -->
+                <p class="text-gray-700 text-sm leading-relaxed text-left">
+                    He has an undergraduate degree in engineering from India and a master's in risk management from
+                    New York University, USA. He has been involved with the insurance sector for over a decade while
+                    his family interests include agriculture & textile businesses. This gave him a first-hand experience
+                    and deep insight into the Indian agri sector and the workings of the Indian farmer. He decided to
+                    bring
+                    his expertise and his experience together to create Kshema General Insurance Ltd. He also
+                    established a
+                    successful insurance broking company, ITUS before taking the plunge in crop insurance with Kshema.
+                </p>
+                <div class="mt-4 flex justify-center">
+                    <img src="./images/img-33.jpg" alt="Natraj Nukala"
+                        class="w-32 h-32 object-cover rounded-full border-2 border-gray-300">
+                </div>
+                <button onclick="closeModal4()"
+                    class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Close</button>
+            </div>
+        </div>
+
+        <!-- <div class=" rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5">
+            <img src="../image/servlet.jpg" class="h-96 w-96 ml-3">
+            <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda reiciendis veniam
+                doloremque
+                obcaecati suscipit cumque itaque ratione saepe explicabo nesciunt! Delectus, dolor
+                voluptatem!
+                Eligendi voluptas repellat numquam ipsa optio aut?</p>
+        </div> -->
+
+    </div>
+
+    <!-- <h1 class="text-5xl mt-20 ml-28 font-bold">The management team</h1>
+    <div class="flex justify-center gap-6 mt-8 p-5 h-auto">
+
+        <div class=" rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5">
+            <img src="../image" class="h-96 w-96 ml-3">
+            <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda reiciendis veniam
+                doloremque
+                obcaecati suscipit cumque itaque ratione saepe explicabo nesciunt! Delectus, dolor
+                voluptatem!
+                Eligendi voluptas repellat numquam ipsa optio aut?</p>
+        </div>
+
+        <div class=" rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5">
+            <img src="../image/servlet.jpg" class="h-96 w-96 ml-3">
+            <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda reiciendis veniam
+                doloremque
+                obcaecati suscipit cumque itaque ratione saepe explicabo nesciunt! Delectus, dolor
+                voluptatem!
+                Eligendi voluptas repellat numquam ipsa optio aut?</p>
+        </div>
+
+        <div class=" rounded-lg h-auto shadow-lg border-2 p-5 mt-5 mb-5">
+            <img src="../image/servlet.jpg" class="h-96 w-96 ml-3">
+            <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda reiciendis veniam
+                doloremque
+                obcaecati suscipit cumque itaque ratione saepe explicabo nesciunt! Delectus, dolor
+                voluptatem!
+                Eligendi voluptas repellat numquam ipsa optio aut?</p>
+        </div>
+    </div>
+ -->
+    </div>
+
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        function openModal1() {
+            document.getElementById('modal1').classList.remove('hidden');
+        }
+        function closeModal1() {
+            document.getElementById('modal1').classList.add('hidden');
+        }
+
+        function openModal2() {
+            document.getElementById('modal2').classList.remove('hidden');
+        }
+        function closeModal2() {
+            document.getElementById('modal2').classList.add('hidden');
+        }
+
+        function openModal3() {
+            document.getElementById('modal3').classList.remove('hidden');
+        }
+        function closeModal3() {
+            document.getElementById('modal3').classList.add('hidden');
+        }
+
+        function openModal4() {
+            document.getElementById('modal4').classList.remove('hidden');
+        }
+        function closeModal4() {
+            document.getElementById('modal4').classList.add('hidden');
+        }
+
+    </script>
+</body>
+
+</html>
