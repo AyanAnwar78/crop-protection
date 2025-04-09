@@ -137,6 +137,8 @@ async function getWeather() {
         return;
     }
 
+    document.getElementById("weather").classList.remove("hidden");
+
     const apiKey = "156d9e29e84dfcd1f8472d9e8fee3031"; 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
@@ -164,6 +166,7 @@ async function getWeather() {
 
     async function getWeather() {
         const city = document.getElementById("city").value;
+        document.getElementById("weather").classList.remove("hidden");
         if (!city) {
             alert("Please enter a city name");
             return;
@@ -178,7 +181,7 @@ async function getWeather() {
             if (data.error) {
                 document.getElementById("weather-info").innerHTML = `<p class="text-red-500">${data.error}</p>`;
                 return;
-            }
+            }                       
     
             document.getElementById("weather-info").innerHTML = `
                 <h2 class="text-xl font-semibold">${data.city}, ${data.country}</h2>
