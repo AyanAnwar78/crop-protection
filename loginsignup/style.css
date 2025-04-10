@@ -5,8 +5,12 @@
     font-family:"poppins",sans-serif;
 }
 body{
-    background-color: #c9d6ff;
+    background-color:black;
     background:linear-gradient(to right,#e2e2e2,#c9d6ff);
+    /* background-image: url('https://i.pinimg.com/736x/36/be/44/36be44fbd4aa51172c7f50cc4cf9844e.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
 }
 .container{
     background:#fff;
@@ -92,7 +96,7 @@ input:focus~label,input:not(:placeholder-shown)~label{
     border-radius:5px;
     outline:none;
     border:none;
-    width:50%;
+    width:100%;
     background:rgb(125,125,235);
     color:white;
     cursor:pointer;

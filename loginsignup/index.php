@@ -38,10 +38,10 @@
       <p class="or">
         ----------or--------
       </p>
-      <div class="icons">
+      <!-- <div class="icons">
         <i class="fab fa-google"></i>
         <i class="fab fa-facebook"></i>
-      </div>
+      </div> -->
       <div class="links">
         <p>Already Have Account ?</p>
         <button id="signInButton">Sign In</button>

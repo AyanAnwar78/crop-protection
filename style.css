@@ -35,7 +35,7 @@ input, button, textarea {
     width: 180px; /* Ensures all boxes are equal */
     height: 280px; /* Increased height to accommodate text */
     border-radius: 10%;
-    background-color: rgb(16, 2, 2);
+    background-color: rgb(243, 242, 242);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     text-align: center;
@@ -55,7 +55,7 @@ input, button, textarea {
 
 #sightingsContainer p {
     font-size: 14px;
-    color: white;
+    color: black;
     margin: 4px 0;
 }
 
@@ -64,7 +64,8 @@ input, button, textarea {
     margin-top: 50px;
     height: auto;
     width: 50%;
-    background-color: rgba(154, 231, 154, 0.89);
+    /* background-color: rgba(154, 231, 154, 0.89); */
+
 }
 
 

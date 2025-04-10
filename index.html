@@ -72,24 +72,6 @@
             width: 100%;
             height: auto;
         }
-
-        @keyframes slide {
-
-            0%,
-            33% {
-                transform: translateX(0);
-            }
-
-            38%,
-            66% {
-                transform: translateX(-100%);
-            }
-
-            71%,
-            100% {
-                transform: translateX(-200%);
-            }
-        }
     </style>
 </head>
 
@@ -116,21 +98,20 @@
                         class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Alerts</a>
                     <a href="weather.html"
                         class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Weather Update</a>
-                    <a href="map.html"
-                        class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Map</a>
+                    <a href="map.html" class="text-black hover:text-green-500 block px-4 py-2 hover:bg-gray-100">Map</a>
                 </div>
             </div>
             <a href="#sightings" class="text-white text-xl hover:text-green-500">Animal Sighting</a>
             <a href="#guideline" class="text-white text-xl hover:text-green-500">Guidelines</a>
             <a href="#weather" class="text-white text-xl hover:text-green-500">Weather</a>
             <a href="./loginsignup/index.php" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-                login
+                Login
             </a>
         </nav>
     </header>
 
 
-    
+
     <section id="sightings" class="mt-20">
         <h2 class="text-center font-bold font-serif text-2xl">Report Sighting</h2>
         <form id="sightingForm" enctype="multipart/form-data" class="flex gap-6 m-7">
@@ -173,7 +154,7 @@
     </section>
 
 
-    <div class="bg-amber-50 h-screen mt-12 pt-4">
+    <div class="bg-gray-100 h-screen mt-12 pt-4">
         <div class="flex  m-12">
             <div class="inline ">
                 <img class="w-[500px] h-[500px]" src="./image/7fb7e07d-ef54-4915-b2ef-309519b0c31c.jpg" alt="Not">
@@ -193,14 +174,57 @@
         </div>
     </div>
 
-    <section id="mapSection" class="h-[500px]">
-        <h2 class="text-xl text-center font-bold py-2">Wildlife Sightings Map</h2>
-        <div class="flex justify-center items-center ">
-            <div class="w-[80%] h-[400px] rounded-lg shadow-lg border border-gray-300 overflow-hidden">
-                <div id="map" class="w-full h-full"></div>
+
+    <div class="mt-8 max-w-6xl mx-auto bg-gray-200 px-12">
+        <h2 class="text-center text-2xl font-semibold mb-4 text-green-700">
+          News Reports on Crop Destruction by Animals
+        </h2>
+      
+        <!-- Scroll Container with Scrollbar -->
+        <div class="overflow-x-auto scrollbar-hide">
+          <div class="flex w-max space-x-5">
+      
+            <!-- Card 1 -->
+            <div class="flex-none w-72 bg-white p-4 rounded-lg shadow-lg">
+              <h3 class="text-lg font-bold mb-2">Elephants Destroy Paddy Fields in Assam (2024)</h3>
+              <img src="/images/english-sentinelassam_import_h-upload_2021_11_29_275610-numaligarh-man-elephant-conflict-1.avif" alt="Elephant crop destruction" class="w-full h-48 object-cover rounded mb-2">
+              <p class="text-sm">In late November 2024, a herd of wild elephants ventured into paddy fields near Kaziranga National Park...</p>
             </div>
+      
+            <!-- Card 2 -->
+            <div class="flex-none w-72 bg-white p-4 rounded-lg shadow-lg">
+              <h3 class="text-lg font-bold mb-2">Wild Boars Ruin Sugarcane Crops in Maharashtra (2023)</h3>
+              <img src="/images/pune-news-sugarcane-crop-destroyed.webp" alt="Wild boar crop destruction" class="w-full h-48 object-cover rounded mb-2">
+              <p class="text-sm">In early 2023, sugarcane farmers in parts of Maharashtra reported heavy losses due to wild boars destroying crops...</p>
+            </div>
+      
+            <!-- Card 3 -->
+            <div class="flex-none w-72 bg-white p-4 rounded-lg shadow-lg">
+              <h3 class="text-lg font-bold mb-2">Monkeys Attack Vegetable Farms in Himachal (2024)</h3>
+              <img src="/images/badar-aatanka.jpg" alt="Monkey crop destruction" class="w-full h-48 object-cover rounded mb-2">
+              <p class="text-sm">In August 2024, aggressive monkey groups were reported in several villages in Himachal Pradesh...</p>
+            </div>
+      
+            <!-- Card 4 -->
+            <div class="flex-none w-72 bg-white p-4 rounded-lg shadow-lg">
+              <h3 class="text-lg font-bold mb-2">Peacocks Damage Wheat Crops in Rajasthan (2023)</h3>
+              <img src="/images/70766640.png" alt="Peacock crop damage" class="w-full h-48 object-cover rounded mb-2">
+              <p class="text-sm">In rural Rajasthan, especially near Udaipur, farmers reported increasing instances of peacocks feeding on sprouting wheat...</p>
+            </div>
+      
+            <!-- Card 5 -->
+            <div class="flex-none w-72 bg-white p-4 rounded-lg shadow-lg">
+              <h3 class="text-lg font-bold mb-2">Nilgai Herds Ravage Fields in Bihar (2024)</h3>
+              <img src="/images/500x300_358126-358048-nilgai-trouble-bihar-farmers-crops-devastation-farmers-protest-crop-pattern-1.webp" alt="Nilgai crop destruction" class="w-full h-48 object-cover rounded mb-2">
+              <p class="text-sm">In February 2024, herds of Nilgai (blue bulls) were seen devastating standing crops like maize and pulses in Bihar...</p>
+            </div>
+      
+          </div>
         </div>
-    </section>
+      </div>
+      
+
+
 
 
     <!-- Weather Update Section -->
@@ -263,6 +287,8 @@
     <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
 
     <script>
+
+
         function toggleAdvice() {
             document.getElementById('advice-content').classList.toggle('hidden');
         }
@@ -359,28 +385,24 @@
 
 
         const slides = document.getElementById("manualSlides");
-    const totalSlides = slides.children.length;
-    let currentIndex = 0;
+        const totalSlides = slides.children.length;
+        let currentIndex = 0;
 
-    function updateSlide() {
-        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
+        function updateSlide() {
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
 
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlide();
-    }
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlide();
+        }
 
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlide();
-    }
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlide();
+        }
 
     </script>
 </body>
 
 </html>
-
-
-
-
