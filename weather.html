@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .weather-card { backdrop-filter: blur(10px); }
+    .crop-suggestion { transition: all 0.3s ease; }
+    .crop-suggestion:hover { transform: translateY(-5px); }
+    body {
+      padding-top: 70px; /* Add padding to prevent content from being hidden behind fixed header */
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ['Oswald', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen font-oswald" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb'); background-size: cover; background-attachment: fixed;">
+
+  <!-- Header -->
+  <nav class="flex fixed top-0 justify-between items-center bg-green-50 shadow-md w-full px-6 py-3 z-50">
+    <div class="flex items-center space-x-3">
+      <img src="./image/a87020df-7af7-40d8-aba1-61c7819f1e46.jpg" alt="CropGuard Logo" class="h-10 w-10 rounded-full border-2 border-green-400">
+      <h1 class="text-xl font-bold text-green-800 font-sans">Crop Protection</h1>
+    </div>
+    <div class="hidden md:flex items-center space-x-6">
+      <a href="main.html" class="text-gray-700 hover:text-green-600 transition-colors flex items-center">
+         Home
+      </a>
+      <a href="map.html" class="text-gray-700 hover:text-green-600 transition-colors flex items-center">
+         Map
+      </a>
+      <a href="./leader.html" class="text-gray-700 hover:text-green-600 transition-colors flex items-center">
+         Experts
+      </a>
+      <a href="contact.html" class="text-gray-700 hover:text-green-600 transition-colors flex items-center">
+         Contact
+      </a>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 pb-12">
+    <div class="text-center mb-8 pt-6">
+      <h1 class="text-4xl font-bold text-black/50 mb-2">Farm Weather Intelligence</h1>
+      <p class="text-xl text-black/50 max-w-2xl mx-auto">Real-time weather data and agricultural insights to protect your crops and optimize yields</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="bg-white/90 p-6 rounded-xl shadow-xl mb-8 max-w-2xl mx-auto">
+      <h2 class="text-xl font-semibold text-green-800 mb-4 flex items-center justify-center">
+        <i class="fas fa-search-location mr-2"></i> Find Weather for Your Location
+      </h2>
+      <div class="flex">
+        <input id="locationInput" type="text" placeholder="Enter city or region..."
+          class="p-3 border border-gray-300 rounded-l-lg w-full focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <button onclick="searchLocation()" class="bg-green-600 text-white px-6 rounded-r-lg hover:bg-green-700 transition flex items-center">
+          <i class="fas fa-search mr-2"></i> Search
+        </button>
+      </div>
+      <p class="text-sm text-gray-600 mt-2 text-center">Example: "New Delhi"</p>
+    </div>
+
+    <!-- Weather Display Section -->
+    <div id="weather" class="weather-card bg-white/80 p-8 rounded-xl shadow-xl mb-8 max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold text-green-800 mb-6 flex items-center justify-center">
+        <i class="fas fa-cloud-sun-rain mr-3"></i> Weather Information
+      </h2>
+      <div class="text-center py-8">
+        <p class="text-gray-700 font-medium text-lg">
+          Search for a location to view detailed weather information...
+        </p>
+        <div class="mt-4 text-gray-500">
+          <i class="fas fa-map-marker-alt animate-pulse"></i>
+          <span class="ml-2">Waiting for location selection</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agricultural Advisory Section -->
+    <div id="cropInfo" class="weather-card bg-white/80 p-6 rounded-xl shadow-xl max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold text-green-800 mb-4 flex items-center justify-center">
+        <i class="fas fa-leaf mr-3"></i> Agricultural Advisory
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="cropSuggestions">
+        <div class="crop-suggestion bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+          <h3 class="font-semibold text-green-800 mb-2">Crop Suggestions</h3>
+          <p class="text-sm text-gray-700">Recommended crops will appear based on current weather conditions.</p>
+        </div>
+        <div class="crop-suggestion bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+          <h3 class="font-semibold text-blue-800 mb-2">Irrigation</h3>
+          <p class="text-sm text-gray-700">Irrigation recommendations will appear after location search.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    async function getWeather(lat, lon) {
+      try {
+        const apiKey = '156d9e29e84dfcd1f8472d9e8fee3031'; 
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+        
+        const weatherResponse = await fetch(weatherUrl);
+        const weatherData = await weatherResponse.json();
+        
+        // Get weather icon
+        const weatherIcon = weatherData.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+        
+        // Update weather display
+        document.getElementById('weather').innerHTML = `
+          <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+            <div class="flex items-center mb-4 md:mb-0">
+              <img src="${iconUrl}" class="mr-3" style="height: 50px;"> 
+              <div>
+                <h2 class="text-2xl font-bold text-green-800">${weatherData.name}, ${weatherData.sys.country}</h2>
+                <p class="text-sm text-gray-600">${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-sm text-gray-600">${new Date().toLocaleTimeString()}</p>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white/70 p-3 rounded-lg text-center">
+              <p class="text-gray-600 text-sm">Temperature</p>
+              <p class="text-2xl font-bold text-green-700">${Math.round(weatherData.main.temp)}°C</p>
+              <p class="text-xs text-gray-600">Feels like ${Math.round(weatherData.main.feels_like)}°C</p>
+            </div>
+            <div class="bg-white/70 p-3 rounded-lg text-center">
+              <p class="text-gray-600 text-sm">Humidity</p>
+              <p class="text-2xl font-bold text-blue-700">${weatherData.main.humidity}%</p>
+            </div>
+            <div class="bg-white/70 p-3 rounded-lg text-center">
+              <p class="text-gray-600 text-sm">Wind</p>
+              <p class="text-2xl font-bold text-amber-700">${weatherData.wind.speed} m/s</p>
+              <p class="text-xs text-gray-600">${getWindDirection(weatherData.wind.deg)}</p>
+            </div>
+            <div class="bg-white/70 p-3 rounded-lg text-center">
+              <p class="text-gray-600 text-sm">Condition</p>
+              <p class="text-lg font-bold text-purple-700 capitalize">${weatherData.weather[0].description}</p>
+            </div>
+          </div>
+        `;
+        
+        // Update crop suggestions based on weather
+        updateCropSuggestions(weatherData);
+        
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+        document.getElementById('weather').innerHTML = `
+          <div class="text-center py-8">
+            <p class="text-red-500 font-bold">Error loading weather data. Please try again.</p>
+          </div>
+        `;
+      }
+    }
+
+    function getWindDirection(degrees) {
+      const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+      const index = Math.round((degrees % 360) / 45) % 8;
+      return directions[index];
+    }
+
+    function updateCropSuggestions(weatherData) {
+      const temp = weatherData.main.temp;
+      const humidity = weatherData.main.humidity;
+      const rain = weatherData.weather[0].main === 'Rain' ? true : false;
+      
+      let cropRecommendation = '';
+      
+      // Crop recommendations
+      if (temp < 10) {
+        cropRecommendation = 'Cool season crops: kale, spinach, broccoli, peas';
+      } else if (temp > 30) {
+        cropRecommendation = 'Heat-tolerant crops: okra, sweet potatoes, cowpeas, amaranth';
+      } else {
+        cropRecommendation = 'Most common crops suitable: tomatoes, peppers, beans, corn';
+      }
+      
+      document.getElementById('cropSuggestions').innerHTML = `
+        <div class="crop-suggestion bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+          <h3 class="font-semibold text-green-800 mb-2 flex items-center">
+            <i class="fas fa-seedling mr-2"></i> Crop Suggestions
+          </h3>
+          <p class="text-sm text-gray-700">${cropRecommendation}</p>
+        </div>
+        <div class="crop-suggestion bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+          <h3 class="font-semibold text-blue-800 mb-2 flex items-center">
+            <i class="fas fa-tint mr-2"></i> Irrigation
+          </h3>
+          <p class="text-sm text-gray-700">${getIrrigationAdvice(temp, humidity, rain)}</p>
+        </div>
+      `;
+    }
+    
+    function getIrrigationAdvice(temp, humidity, rain) {
+      if (rain) return 'Rainfall detected. Irrigation may not be needed today.';
+      if (temp > 28 && humidity < 50) return 'High temperatures and low humidity. Increase irrigation frequency.';
+      if (temp < 15) return 'Cool temperatures. Reduce irrigation to prevent waterlogging.';
+      return 'Moderate irrigation recommended based on current conditions.';
+    }
+
+    async function searchLocation() {
+      const city = document.getElementById('locationInput').value.trim();
+      if (!city) {
+        alert('Please enter a city name');
+        return;
+      }
+      
+      try {
+        const apiKey = '156d9e29e84dfcd1f8472d9e8fee3031';
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.coord) {
+          getWeather(data.coord.lat, data.coord.lon);
+        } else {
+          document.getElementById('weather').innerHTML = `
+            <div class="text-center py-8">
+              <p class="text-red-500 font-bold">Location not found. Please try another city.</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error("Search error:", error);
+        document.getElementById('weather').innerHTML = `
+          <div class="text-center py-8">
+            <p class="text-red-500 font-bold">Error searching for location. Please check your connection.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Search when Enter key is pressed
+    document.getElementById('locationInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchLocation();
+      }
+    });
+
+    // Initialize with a default location (New Delhi)
+    window.onload = function() {
+      getWeather(28.6139, 77.2090);
+    };
+  </script>
+</body>
+</html>
