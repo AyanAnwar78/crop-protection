@@ -38,7 +38,7 @@ if ($city) {
         echo json_encode($weather);
     } else {
         // Fetch from API
-        $apiKey = "156d9e29e84dfcd1f8472d9e8fee3031";
+        $apiKey = "156d9e29e84fsfbgdfcd1f8472d9e8fee3031";
         $url = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric";
         $response = file_get_contents($url);
         $data = json_decode($response, true);
